@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: '0px'
   },
   content: {
-    padding: '50px'
+    padding: '10px 30px 30px 30px'
   },
   header: {
     textAlign: 'left',
@@ -51,7 +51,7 @@ export default function PriceHistoryChart() {
               ]
             };
           }}
-          height={'100%'}
+          height={225}
           width={'100%'}
           options={{
             tooltips: {
@@ -88,7 +88,7 @@ export default function PriceHistoryChart() {
                   position: 'right',
                   ticks: {
                     beginAtZero: true,
-                    stepSize: 40,
+                    stepSize: 50,
                     callback: (value, index, values) => {
                       return '$' + value.toFixed(0);
                     }
