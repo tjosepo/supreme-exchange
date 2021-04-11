@@ -62,7 +62,7 @@ export default function ProductListings() {
         action={
           <Button
             size="large"
-            endIcon={asc ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            endIcon={asc ? <ExpandMoreIcon /> : <ExpandLessIcon />}
             onClick={handleSorting}>
             Price
           </Button>
