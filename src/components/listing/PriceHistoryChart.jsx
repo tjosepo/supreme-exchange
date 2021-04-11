@@ -51,8 +51,8 @@ export default function PriceHistoryChart() {
               ]
             };
           }}
-          height={350}
-          width={600}
+          height={'100%'}
+          width={'100%'}
           options={{
             tooltips: {
               enabled: false
