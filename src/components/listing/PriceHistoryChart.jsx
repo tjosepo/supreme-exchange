@@ -11,6 +11,7 @@ export default function PriceHistoryChart() {
       </span>
       <div>
         <Line
+          style={{width: '100%'}}
           data={canvas => {
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
@@ -32,7 +33,6 @@ export default function PriceHistoryChart() {
             };
           }}
           height={225}
-          width={'100%'}
           options={{
             tooltips: {
               enabled: false

@@ -2,5 +2,18 @@
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-top: 5px !important;
     margin-bottom: 15px !important;
+}
+
+.TextField input {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.PostButton {
+    background-color: #EDEDED !important;
+}
+
+.PostButtonContainer {
+    margin-top: 10px !important;
 }
