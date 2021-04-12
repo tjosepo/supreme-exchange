@@ -1,0 +1,17 @@
+.Card {
+  background-color: var(--bg-light);
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.Card__media {
+  margin-top: -16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  margin-bottom: 16px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}

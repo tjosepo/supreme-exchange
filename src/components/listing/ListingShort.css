@@ -1,0 +1,45 @@
+.Card.ListingShort {
+  margin-bottom: 32px;
+}
+
+.ListingShort__title {
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.ListingShort__price {
+  color: var(--primary);
+  font-weight: normal;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+
+.ListingShort__subtitle {
+  color: var(--text-faded);
+  font-weight: normal;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.ListingShort__details {
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.ListingShort__property {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ListingShort__property__name {
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+.ListingShort__property__value {
+  color: var(--text-faded);
+  text-align: right;
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
