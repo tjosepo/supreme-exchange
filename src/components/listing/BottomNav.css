@@ -1,0 +1,13 @@
+.BottomNav {
+  border-top: 1px solid var(--border);
+  z-index: 1;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.BottomNav .MuiBottomNavigationAction-label {
+  color: var(--text);
+  font-family: inherit;
+}
