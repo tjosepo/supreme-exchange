@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+:root,
+body {
+  font-family: 'Poppins', sans-serif;
+
+  --bg: #f8f9f9;
+  --bg-light: #ffffff;
+  --text: rgba(0, 0, 0, 0.7);
+  --text-faded: rgba(0, 0, 0, 0.5);
+  --primary: #81c788;
+
+  --shadow-soft: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
+
+  background-color: var(--bg);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.MuiIconButton-root {
+  color: inherit;
+}
+
+p {
+  margin-top: 0;
+}
+
+.label {
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+}

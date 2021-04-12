@@ -1,0 +1,17 @@
+.Header {
+  background-color: var(--bg-light);
+  box-shadow: var(--shadow-soft);
+  height: 1.5rem;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header .MuiIconButton-root {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

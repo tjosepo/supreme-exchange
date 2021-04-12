@@ -1,35 +1,15 @@
-import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-
-const years = ['', '', '', '2019', '', '', '', '', '2020', '', '', ''];
-
-const useStyles = makeStyles(() => ({
-  container: {
-    width: '100%',
-    marginTop: '5px',
-    marginBottom: '5px',
-    borderRadius: '0px'
-  },
-  content: {
-    padding: '10px 30px 30px 30px'
-  },
-  header: {
-    textAlign: 'left',
-    opacity: 0.7
-  }
-}));
+import Card from './Card';
 
 export default function PriceHistoryChart() {
-  const classes = useStyles();
+  const years = ['', '', '', '2019', '', '', '', '', '2020', '', '', ''];
 
   return (
-    <Card className={classes.container}>
-      <CardHeader className={classes.header} title="Timeline" />
-      <CardContent className={classes.content}>
+    <Card>
+      <span className="label">
+        Timeline
+      </span>
+      <div>
         <Line
           data={canvas => {
             const ctx = canvas.getContext('2d');
@@ -98,7 +78,7 @@ export default function PriceHistoryChart() {
             }
           }}
         />
-      </CardContent>
+      </div>
     </Card>
   );
 }

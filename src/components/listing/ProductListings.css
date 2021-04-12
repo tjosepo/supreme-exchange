@@ -1,0 +1,22 @@
+.ProductListing__header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProductListing__header__title {
+  font-size: 1.125rem;
+}
+
+.ProductListing__header .MuiButtonBase-root {
+  color: var(--text-faded);
+  margin-right: -8px;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: none;
+  font-size: inherit;
+}
