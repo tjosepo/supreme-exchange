@@ -1,5 +1,4 @@
 
-import { useState, useRef } from 'react';
 import './style/ImageUpload.css';
 import ImageIcon from '@material-ui/icons/Image';
 import Button from '@material-ui/core/Button';

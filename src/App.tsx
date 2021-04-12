@@ -1,4 +1,3 @@
-import ListingPage from './components/listing/ListingPage';
 import PostingPage from './components/post/PostingPage';
 
 function App() {
