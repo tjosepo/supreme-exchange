@@ -1,0 +1,76 @@
+.Card.ListingInfo {
+  margin-bottom: 32px;
+}
+
+.ListingInfo__title {
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.ListingInfo__price {
+  color: var(--primary);
+  font-weight: normal;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+
+.ListingInfo__subtitle {
+  color: var(--text-faded);
+  font-weight: normal;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.ListingInfo__details {
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.ListingInfo__property {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.ListingInfo__property__name {
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+.ListingInfo__property__value {
+  color: var(--text-faded);
+  text-align: right;
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+.ListingInfo__message {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+.ListingInfo__message__title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .ListingInfo__message__text{
+    width: 100%;
+ }
+ .ListingInfo__message__text input{
+    font-size: 0.875rem;
+    padding-left: 16px;
+    color: var(--text-faded);
+ }
+
+ .ListingInfo__footer {
+     display: flex;
+     justify-content: space-around;
+ }
+
+ .ListingInfo__footer__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ }
