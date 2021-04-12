@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from '../shared/Header';
 import Card from '../shared/Card';
 import ImageUpload from './ImageUpload';
+import Map from '../map/Map';
 import PriceHistoryChart from '../listing/PriceHistoryChart';
 import { NotificationsNone, AccountCircle, Create } from '@material-ui/icons';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -41,6 +42,13 @@ const nego = [
         label: 'Yes'
     }
 ]
+
+const defaultLocation = {
+    address: '1455 De Maisonneuve Blvd. W.',
+    city: 'Montreal',
+    lat: 45.4974230654036,
+    lng: -73.57907743891892
+}
 
 export default function PostingPage() {
     const [condition, setCondition] = useState('Like New');
@@ -150,6 +158,9 @@ export default function PostingPage() {
                         size='small'
                         placeholder='Montreal, QC'                
                     />
+                </div>
+                <div className='MapContainer'>
+                    <Map location={defaultLocation}/>
                 </div>
                 <Divider />
                 <Grid

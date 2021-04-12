@@ -17,3 +17,8 @@
 .PostButtonContainer {
     margin-top: 10px !important;
 }
+
+.MapContainer {
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
