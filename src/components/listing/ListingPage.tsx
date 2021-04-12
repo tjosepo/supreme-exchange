@@ -1,11 +1,13 @@
-import Header from './Header';
+import { Close } from '@material-ui/icons';
+import Header from '../shared/Header';
 import PriceHistoryChart from './PriceHistoryChart';
 import ProductListings from './ProductListings';
 import BottomNav from './BottomNav';
+
 export default function ListingPage() {
   return (
     <>
-      <Header icon={true}>123 Sesame Street 21324</Header>
+      <Header leftButton={<Close />}>123 Sesame Street 21324</Header>
       <PriceHistoryChart />
       <ProductListings />
       <BottomNav />

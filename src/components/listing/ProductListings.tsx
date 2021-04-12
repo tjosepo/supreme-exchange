@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 import ListingShort from './ListingShort';
-import './ProductListings.css';
+import './style/ProductListings.css';
 
 const mockListings = [
   {

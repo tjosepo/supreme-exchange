@@ -2,7 +2,7 @@ import React from 'react';
 import Map from '../../map/Map';
 import { Listing } from '../../../interfaces/Interfaces';
 import Header from '../Header';
-import Card from '../Card';
+import Card from '../../shared/Card';
 import './ListingInfo.css';
 import { IconButton, TextField } from '@material-ui/core';
 import { Send, Bookmark, Share } from '@material-ui/icons';

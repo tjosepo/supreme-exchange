@@ -1,5 +1,5 @@
 import { Line } from 'react-chartjs-2';
-import Card from './Card';
+import Card from '../shared/Card';
 
 export default function PriceHistoryChart() {
   const years = ['', '', '', '2019', '', '', '', '', '2020', '', '', ''];
@@ -9,7 +9,8 @@ export default function PriceHistoryChart() {
       <span className="label">Timeline</span>
       <div>
         <Line
-          data={(canvas: any) => {
+          style={{ width: '100%' }}
+          data={canvas => {
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
             gradient.addColorStop(1, 'rgba(255,255,255,1)');
@@ -66,7 +67,7 @@ export default function PriceHistoryChart() {
                   ticks: {
                     beginAtZero: true,
                     stepSize: 50,
-                    callback: (value: number, index: any, values: any) => {
+                    callback: (value, index, values) => {
                       return '$' + value.toFixed(0);
                     }
                   }

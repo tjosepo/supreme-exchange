@@ -1,6 +1,6 @@
-import Card from './Card';
+import Card from '../shared/Card';
 
-import './ListingShort.css';
+import './style/ListingShort.css';
 
 interface Props {
   image: string;
