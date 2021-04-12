@@ -3,7 +3,6 @@ import Card from './Card';
 import './ListingShort.css';
 
 interface Props {
-  id: string;
   image: string;
   title: string;
   price: number | string;

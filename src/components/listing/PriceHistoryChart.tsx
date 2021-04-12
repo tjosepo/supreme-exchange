@@ -6,12 +6,10 @@ export default function PriceHistoryChart() {
 
   return (
     <Card>
-      <span className="label">
-        Timeline
-      </span>
+      <span className="label">Timeline</span>
       <div>
         <Line
-          data={canvas => {
+          data={(canvas: any) => {
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
             gradient.addColorStop(1, 'rgba(255,255,255,1)');
@@ -32,7 +30,6 @@ export default function PriceHistoryChart() {
             };
           }}
           height={225}
-          width={'100%'}
           options={{
             tooltips: {
               enabled: false
@@ -69,7 +66,7 @@ export default function PriceHistoryChart() {
                   ticks: {
                     beginAtZero: true,
                     stepSize: 50,
-                    callback: (value, index, values) => {
+                    callback: (value: number, index: any, values: any) => {
                       return '$' + value.toFixed(0);
                     }
                   }
