@@ -6,9 +6,7 @@ export default function PriceHistoryChart() {
 
   return (
     <Card>
-      <span className="label">
-        Timeline
-      </span>
+      <span className="label">Timeline</span>
       <div>
         <Line
           style={{width: '100%'}}

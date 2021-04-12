@@ -4,9 +4,9 @@ import './style/Header.css';
 
 interface Props {
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children: Text;
-  leftButton: any;
-  rightButton: any;
+  children: string;
+  leftButton?: any;
+  rightButton?: any;
 }
 
 export default function Header({ onClick, children, leftButton, rightButton }: Props) {

@@ -3,6 +3,7 @@ import Header from '../shared/Header';
 import PriceHistoryChart from './PriceHistoryChart';
 import ProductListings from './ProductListings';
 import BottomNav from './BottomNav';
+
 export default function ListingPage() {
   return (
     <>
