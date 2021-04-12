@@ -9,7 +9,7 @@ export default function PriceHistoryChart() {
       <span className="label">Timeline</span>
       <div>
         <Line
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
           data={canvas => {
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);

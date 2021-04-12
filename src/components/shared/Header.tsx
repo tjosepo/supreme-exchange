@@ -12,17 +12,17 @@ interface Props {
 export default function Header({ onClick, children, leftButton, rightButton }: Props) {
   return (
     <div className="Header">
-      { leftButton &&
+      {leftButton && (
         <IconButton className={'LeftButton'} onClick={e => onClick?.(e)}>
           {leftButton}
         </IconButton>
-      }
+      )}
       <span>{children}</span>
-      { rightButton &&
+      {rightButton && (
         <IconButton className={'RightButton'} onClick={e => onClick?.(e)}>
           {rightButton}
         </IconButton>
-      }
+      )}
     </div>
   );
 }

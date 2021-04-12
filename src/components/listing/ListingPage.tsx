@@ -7,7 +7,7 @@ import BottomNav from './BottomNav';
 export default function ListingPage() {
   return (
     <>
-      <Header leftButton={<Close/>}>123 Sesame Street 21324</Header>
+      <Header leftButton={<Close />}>123 Sesame Street 21324</Header>
       <PriceHistoryChart />
       <ProductListings />
       <BottomNav />
