@@ -1,4 +1,4 @@
-import './Card.css';
+import './style/Card.css';
 
 interface Props
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

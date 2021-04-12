@@ -1,5 +1,5 @@
 import { Line } from 'react-chartjs-2';
-import Card from './Card';
+import Card from '../shared/Card';
 
 export default function PriceHistoryChart() {
   const years = ['', '', '', '2019', '', '', '', '', '2020', '', '', ''];
