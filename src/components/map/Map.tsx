@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Location } from '../../interfaces/Interfaces';
 import './Map.css';
@@ -19,7 +19,7 @@ export default function Map({ location }: Props) {
   return (
     <div className="Map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.API_KEY || '' }}
+        bootstrapURLKeys={{ key: process.env.REACT_GOOGLE_MAPS_API_KEY || '' }}
         defaultCenter={location}
         defaultZoom={11}
         options={{ disableDefaultUI: true, gestureHandling: 'none' }}>

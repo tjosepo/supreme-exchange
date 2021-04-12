@@ -5,7 +5,7 @@ import Header from '../Header';
 import Card from '../Card';
 import './ListingInfo.css';
 import { IconButton, TextField } from '@material-ui/core';
-import {Send, Bookmark, Share} from '@material-ui/icons';
+import { Send, Bookmark, Share } from '@material-ui/icons';
 
 interface Props {
   listing: Listing;
@@ -41,18 +41,31 @@ export default function ListingInfo({ listing }: Props) {
           <p className="ListingInfo__property__value">{listing.location.city}</p>
         </div>
         <Map location={listing.location} />
-        <hr/>
+        <hr />
         <div className="ListingInfo__message">
           <p className="ListingInfo__message__title">Message Seller</p>
           <TextField
-          className="ListingInfo__message__text"
-          defaultValue="When can I come by?"
-          InputProps={{endAdornment: <IconButton onClick={()=> {console.log('send message')}}><Send/></IconButton>}}
-        />
+            className="ListingInfo__message__text"
+            defaultValue="When can I come by?"
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  onClick={() => {
+                    console.log('send message');
+                  }}>
+                  <Send />
+                </IconButton>
+              )
+            }}
+          />
         </div>
         <div className="ListingInfo__footer">
-          <div className="ListingInfo__footer__button"><Bookmark /> <span>Save</span></div>
-          <div className="ListingInfo__footer__button"><Share /> <span>Share</span></div>
+          <div className="ListingInfo__footer__button">
+            <Bookmark /> <span>Save</span>
+          </div>
+          <div className="ListingInfo__footer__button">
+            <Share /> <span>Share</span>
+          </div>
         </div>
       </Card>
     </>

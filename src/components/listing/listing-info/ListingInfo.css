@@ -45,32 +45,32 @@
 }
 
 .ListingInfo__message {
-    margin-top: 16px;
-    margin-bottom: 16px;
-  }
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
 
 .ListingInfo__message__title {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
 
-  .ListingInfo__message__text{
-    width: 100%;
- }
- .ListingInfo__message__text input{
-    font-size: 0.875rem;
-    padding-left: 16px;
-    color: var(--text-faded);
- }
+.ListingInfo__message__text {
+  width: 100%;
+}
+.ListingInfo__message__text input {
+  font-size: 0.875rem;
+  padding-left: 16px;
+  color: var(--text-faded);
+}
 
- .ListingInfo__footer {
-     display: flex;
-     justify-content: space-around;
- }
+.ListingInfo__footer {
+  color: var(--text);
+  display: flex;
+  justify-content: space-around;
+}
 
- .ListingInfo__footer__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
- }
+.ListingInfo__footer__button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
