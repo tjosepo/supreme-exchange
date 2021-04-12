@@ -1,9 +1,10 @@
 .Header {
+  position: sticky;
+  top: 0;
   background-color: var(--bg-light);
   box-shadow: var(--shadow-soft);
   height: 1.5rem;
   padding: 16px;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -6,6 +6,7 @@ body {
 
   --bg: #f8f9f9;
   --bg-light: #ffffff;
+  --border: #cdcdcd;
   --text: rgba(0, 0, 0, 0.7);
   --text-faded: rgba(0, 0, 0, 0.5);
   --primary: #81c788;
