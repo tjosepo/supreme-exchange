@@ -1,10 +1,10 @@
-import PostingPage from './components/post/PostingPage';
+import SearchPage from './components/search/SearchPage';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <PostingPage />
+        <SearchPage />
       </header>
     </div>
   );
