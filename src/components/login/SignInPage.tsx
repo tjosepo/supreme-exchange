@@ -1,5 +1,7 @@
 import { Button } from '@material-ui/core'
 import Header from '../shared/Header';
+import Card2 from '../shared/Card2';
+
 
 export default function SignInPage(){
     return(
@@ -7,9 +9,9 @@ export default function SignInPage(){
             <Header>
                 Supreme Exchange
             </Header>
-            <div>
+            <Card2>
 
-            </div>
+            </Card2>
         </>
     );
 }
