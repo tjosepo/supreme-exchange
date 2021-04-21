@@ -1,10 +1,10 @@
-import PostingPage from './components/post/PostingPage';
+import SignInPage from './components/login/SignInPage';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <PostingPage />
+        <SignInPage />
       </header>
     </div>
   );

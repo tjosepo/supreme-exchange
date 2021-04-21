@@ -3,8 +3,13 @@ import Header from '../shared/Header';
 
 export default function SignInPage(){
     return(
-        <div>
+        <>
+            <Header>
+                Supreme Exchange
+            </Header>
+            <div>
 
-        </div>
+            </div>
+        </>
     );
 }
