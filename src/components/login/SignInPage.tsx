@@ -1,6 +1,7 @@
-import { Button } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import Header from '../shared/Header';
 import Card2 from '../shared/Card2';
+import './style/SignInPage.css';
 
 
 export default function SignInPage(){
