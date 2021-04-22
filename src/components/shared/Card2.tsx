@@ -10,10 +10,10 @@ interface Props
 
 const Card2 = ({ media, className, ...props }: Props) => {
   return (
-    <div {...props} className={`Card ${className ?? ''}`}>
+    <div {...props} className={`Card2 ${className ?? ''}`}>
       {media && (
         <div
-          className="Card__media"
+          className="Card2__media"
           style={{ backgroundImage: `url(${media.src})` }}
           title={media.title ?? ''}
         />

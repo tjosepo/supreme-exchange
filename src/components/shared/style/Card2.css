@@ -1,4 +1,4 @@
-.Card {
+.Card2 {
   background-color: var(--bg-light);
   box-shadow: var(--shadow-soft);
   border-radius: 10px;
@@ -6,7 +6,7 @@
   margin: 144px 24px 24px;
 }
 
-.Card__media {
+.Card2__media {
   margin-top: -16px;
   margin-left: -16px;
   margin-right: -16px;

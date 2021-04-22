@@ -81,16 +81,7 @@ export default function ProductListings() {
         </Button>
       </div>
       {listings?.map(ele => (
-        <ListingShort
-          key={ele.id}
-          title={ele.title}
-          price={ele.price}
-          subtitle={ele.subtitle}
-          condition={ele.condition}
-          pickup={ele.pickup}
-          negotiable={ele.negotiable}
-          image={ele.image}
-        />
+        <ListingShort {...ele} />
       ))}
     </div>
   );

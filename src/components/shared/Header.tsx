@@ -1,10 +1,11 @@
 import { IconButton } from '@material-ui/core';
+import { ReactElement } from 'react';
 
 import './style/Header.css';
 
 interface Props {
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children: string;
+  children: string | ReactElement;
   leftButton?: any;
   rightButton?: any;
 }
@@ -17,7 +18,7 @@ export default function Header({ onClick, children, leftButton, rightButton }: P
           {leftButton}
         </IconButton>
       )}
-      <span>{children}</span>
+      {typeof children === 'string' ? <span>{children}</span> : children}
       {rightButton && (
         <IconButton className={'RightButton'} onClick={e => onClick?.(e)}>
           {rightButton}

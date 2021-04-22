@@ -1,7 +1,11 @@
+.BottomNav-margin {
+  padding-bottom: 58px;
+}
+
 .BottomNav {
   border-top: 1px solid var(--border);
   z-index: 1;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -10,4 +14,8 @@
 .BottomNav .MuiBottomNavigationAction-label {
   color: var(--text);
   font-family: inherit;
+}
+
+.BottomNav .MuiBottomNavigationAction-label.Mui-selected {
+  color: inherit;
 }

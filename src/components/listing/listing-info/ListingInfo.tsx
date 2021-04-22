@@ -11,7 +11,20 @@ interface Props {
   listing: Listing;
 }
 
+const defaultListing = {
+  id: '1',
+  title: '123 Sesame Street 21324',
+  price: 199.99,
+  subtitle: 'Submitted an hour ago by JOHN123',
+  condition: 'Like new',
+  pickup: 'Can deliver',
+  negotiable: 'Yes',
+  image:
+    'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
+};
+
 export default function ListingInfo({ listing }: Props) {
+  listing = listing ?? defaultListing;
   return (
     <>
       <Header icon={true}>{listing.title}</Header>
@@ -38,9 +51,9 @@ export default function ListingInfo({ listing }: Props) {
 
         <div className="ListingInfo__property">
           <p className="ListingInfo__property__name">Location</p>
-          <p className="ListingInfo__property__value">{listing.location.city}</p>
+          <p className="ListingInfo__property__value">{listing.location?.city}</p>
         </div>
-        <Map location={listing.location} />
+        {listing.location && <Map location={listing.location} />}
         <hr />
         <div className="ListingInfo__message">
           <p className="ListingInfo__message__title">Message Seller</p>
