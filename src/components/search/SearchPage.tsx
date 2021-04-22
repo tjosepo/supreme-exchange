@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import SearchBar from 'material-ui-search-bar';
+import { ChangeEvent, useRef, useState } from 'react';
+import Header from '../shared/Header';
+import { Listing } from '../../interfaces/Interfaces';
 
-import ListingShort from '../listing/ListingShort';
-import BottomNav from '../listing/BottomNav';
 import './SearchPage.css';
+import SearchBar from './SearchBar';
+import { CircularProgress } from '@material-ui/core';
+import { NotificationsNone, AccountCircle } from '@material-ui/icons';
+import SearchResult from './SearchResult';
 
-const mockListings = [
+const mockListings: Listing[] = [
   {
     id: '1',
     title: 'Sesame Street LEGO',
     price: 199.99,
-    subtitle: 'Submitted an hour ago by JOHN123',
+    subtitle: '2 available',
     condition: 'Like new',
     pickup: 'Can deliver',
     negotiable: 'Yes',
@@ -21,7 +24,7 @@ const mockListings = [
     id: '2',
     title: 'FRIENDS LEGO',
     price: 500.99,
-    subtitle: 'Submitted a week ago by LegoDude97',
+    subtitle: '3 available',
     condition: 'Like new',
     pickup: 'Can deliver',
     negotiable: 'Yes',
@@ -32,7 +35,7 @@ const mockListings = [
     id: '3',
     title: 'Baby Yoda Lego',
     price: 150.99,
-    subtitle: 'Submitted an hour ago by HALIBABA',
+    subtitle: '7 available',
     condition: 'Like new',
     pickup: 'First Come, First Served',
     negotiable: 'No',
@@ -43,7 +46,7 @@ const mockListings = [
     id: '4',
     title: 'LEGO Spare Pieces',
     price: 175.99,
-    subtitle: 'Submitted an hour ago by PokemonGoLover69',
+    subtitle: '2 available',
     condition: 'Like new',
     pickup: 'Can deliver',
     negotiable: 'No',
@@ -52,39 +55,61 @@ const mockListings = [
   }
 ];
 
-export default function SearchResults() {
+export default function SearchPage() {
   const [input, setInput] = useState('');
   const [list, setList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const timeout = useRef<number | null>(null);
 
-  const handleSearch = () => {
-    const filtered = mockListings.filter(mockListings => {
-      return mockListings.title.toLowerCase().includes(input.toLowerCase());
-    });
+  const simulateLoading = () => {
+    setLoading(true);
+
+    if (timeout.current !== null) clearTimeout(timeout.current);
+    timeout.current = (setTimeout(() => {
+      setLoading(false);
+      timeout.current = null;
+    }, 500) as unknown) as number;
+  };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    if (input.length === 0) return;
+
+    setInput(input);
+    simulateLoading();
+    const filtered = mockListings;
+    // mockListings.filter(mockListings => {
+    //   return mockListings.title.toLowerCase().includes(input.toLowerCase());
+    // });
     setList(filtered);
   };
 
   return (
     <div className="SearchPage">
-      <SearchBar className="SearchPage__search_bar"
-        placeholder="Search..."
-        onChange={(newValue) => {setInput(newValue)}}
-        onRequestSearch={() => handleSearch()}
-        onCancelSearch={() => setList([])}
-        cancelOnEscape={true}
-      />
-      {list?.map(ele => (
-        <ListingShort
-          key={ele.id}
-          title={ele.title}
-          price={ele.price}
-          subtitle={ele.subtitle}
-          condition={ele.condition}
-          pickup={ele.pickup}
-          negotiable={ele.negotiable}
-          image={ele.image}
-        />
-      ))}
-      <BottomNav/>
+      <Header leftButton={<NotificationsNone />} rightButton={<AccountCircle />}>
+        <SearchBar onChange={handleSearch} />
+      </Header>
+      {loading ? (
+        <div className="SearchPage__loading">
+          <div className="SearchPage__loading__message">
+            Searching for <span>{input}</span>
+          </div>
+          <div className="SearchPage__loading__spinner">
+            <CircularProgress />
+          </div>
+        </div>
+      ) : list.length > 0 ? (
+        list.map(ele => <SearchResult key={ele.id} {...ele} />)
+      ) : (
+        <div className="SearchPage__loading">
+          <div className="SearchPage__loading__message">
+            Found no results for <span>{input}</span>
+          </div>
+          <div className="SearchPage__loading__message">
+            <span>Tip:</span> Try searching for "Lego".
+          </div>
+        </div>
+      )}
     </div>
   );
 }

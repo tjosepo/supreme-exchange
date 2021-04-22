@@ -1,0 +1,28 @@
+.SearchResult {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+}
+
+.SearchResult .SearchResult__image {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  box-shadow: var(--shadow-soft);
+  border-radius: 8px;
+}
+
+.SearchResult .SearchResult__info p {
+  margin-bottom: 8px;
+}
+
+.SearchResult .SearchResult__info__price {
+  color: var(--primary);
+  font-weight: 400;
+}
+
+.SearchResult .SearchResult__info__subtitle {
+  color: var(--text-faded);
+  font-weight: 400;
+}

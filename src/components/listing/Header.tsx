@@ -1,8 +1,6 @@
 import { IconButton } from '@material-ui/core';
 import { Close, ArrowBack } from '@material-ui/icons';
 
-import './Header.css';
-
 interface Props {
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: string;

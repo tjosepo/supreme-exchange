@@ -1,11 +1,12 @@
-interface Location {
+export interface Location {
   address: string;
   city: string;
   lat: number;
   lng: number;
 }
 
-interface Listing {
+export interface Listing {
+  id?: string;
   title: string;
   price: number;
   subtitle: string;
@@ -13,7 +14,5 @@ interface Listing {
   pickup: string;
   negotiable: string;
   image: string;
-  location: Location;
+  location?: Location;
 }
-
-export type { Location, Listing };

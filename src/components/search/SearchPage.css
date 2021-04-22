@@ -1,0 +1,17 @@
+.SearchPage .SearchPage__loading {
+  margin: 16px;
+}
+
+.SearchPage .SearchPage__loading__message {
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.SearchPage .SearchPage__loading__message span {
+  font-weight: 500;
+}
+
+.SearchPage .SearchPage__loading__spinner {
+  display: flex;
+  justify-content: center;
+}

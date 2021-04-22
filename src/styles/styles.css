@@ -12,6 +12,7 @@ body {
   --primary: #81c788;
 
   --shadow-soft: 0 2px 5px 1px rgba(0, 0, 0, 0.05);
+  --shadow-hard: 0 1px 5px 0px rgba(0, 0, 0, 0.25);
 
   background-color: var(--bg);
   color: var(--text);
@@ -30,4 +31,9 @@ p {
 .label {
   font-size: 0.875rem;
   margin-bottom: 8px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
