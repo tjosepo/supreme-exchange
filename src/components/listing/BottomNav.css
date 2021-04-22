@@ -1,7 +1,7 @@
 .BottomNav {
   border-top: 1px solid var(--border);
   z-index: 1;
-  position: sticky;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
