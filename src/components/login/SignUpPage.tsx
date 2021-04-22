@@ -25,7 +25,7 @@ const theme = createMuiTheme({
     },
   });
 
-export default function SignInPage(){
+export default function SignUpPage(){
     const classes = useStyles();
 
     return(
@@ -36,19 +36,19 @@ export default function SignInPage(){
             <Card2>
                 <ThemeProvider theme={theme}>
                     <form className="form">
-                        <InputBox type="email">
+                        <InputBox required={true} type="email" autocomplete="email">
                             Email Address
                         </InputBox>
                         
-                        <InputBox type="text">
+                        <InputBox required={true} type="text" autocomplete="username">
                             Username
                         </InputBox>
 
-                        <InputBox type="password">
+                        <InputBox required={true} type="password" autocomplete="new-password">
                             Password
                         </InputBox>
                         <div>
-                            <Button variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
+                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
                                 Create Account
                             </Button>
                         </div>

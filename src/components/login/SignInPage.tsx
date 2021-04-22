@@ -36,14 +36,14 @@ export default function SignInPage(){
             <Card2>
                 <ThemeProvider theme={theme}>
                     <form className="form">
-                            <InputBox type="text">
-                                Username
-                            </InputBox>
-                            <InputBox type="password">
-                                Password
-                            </InputBox>
+                        <InputBox required={true} type="text" autocomplete="username">
+                            Username
+                        </InputBox>
+                        <InputBox required={true} type="password" autocomplete="current-password">
+                            Password
+                        </InputBox>
                         <div>
-                            <Button variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
+                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
                                 Sign In
                             </Button>
                         </div>

@@ -36,31 +36,31 @@ export default function SignUpAdditional(){
             <Card2>
                 <ThemeProvider theme={theme}>
                     <form className="form">
-                        <InputBox type="text">
+                        <InputBox required={false} type="text" autocomplete="given-name">
                         First Name
                         </InputBox>
 
-                        <InputBox type="text">
+                        <InputBox required={false} type="text" autocomplete="family-name">
                         Last Name
                         </InputBox>
 
-                        <InputBox type="text">
+                        <InputBox required={false} type="text" autocomplete="country-name">
                         Country
                         </InputBox>
 
-                        <InputBox type="text">
+                        <InputBox required={false} type="text" autocomplete="address-level2">
                         City
                         </InputBox>
 
-                        <InputBox type="text">
+                        <InputBox required={false} type="text" autocomplete="street-address">
                         Address
                         </InputBox>
 
-                        <InputBox type="text">
+                        <InputBox required={false} type="tel" autocomplete="tel">
                         Phone Number
                         </InputBox>
                         <div>
-                            <Button variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
+                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
                                 Skip / Continue
                             </Button>
                         </div> 
