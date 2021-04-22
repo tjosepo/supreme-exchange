@@ -1,8 +1,5 @@
 import { InputBase } from '@material-ui/core';
 import './style/SignInInputs.css';
-
-import React from 'react';
-
 interface Props {
   children: string;
   type: string;

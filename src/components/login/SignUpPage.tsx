@@ -25,7 +25,7 @@ const theme = createMuiTheme({
     },
   });
 
-export default function SignUpAdditional(){
+export default function SignInPage(){
     const classes = useStyles();
 
     return(
@@ -36,35 +36,27 @@ export default function SignUpAdditional(){
             <Card2>
                 <ThemeProvider theme={theme}>
                     <form className="form">
+                        <InputBox type="email">
+                            Email Address
+                        </InputBox>
+                        
                         <InputBox type="text">
-                        First Name
+                            Username
                         </InputBox>
 
-                        <InputBox type="text">
-                        Last Name
-                        </InputBox>
-
-                        <InputBox type="text">
-                        Country
-                        </InputBox>
-
-                        <InputBox type="text">
-                        City
-                        </InputBox>
-
-                        <InputBox type="text">
-                        Address
-                        </InputBox>
-
-                        <InputBox type="text">
-                        Phone Number
+                        <InputBox type="password">
+                            Password
                         </InputBox>
                         <div>
                             <Button variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
-                                Skip / Continue
+                                Create Account
                             </Button>
-                        </div> 
+                        </div>
                     </form>
+                    <p className="text">
+                        Already have an account? <a href="https://www.w3schools.com/tags/tag_br.asp">Sign In</a>
+                    </p>
+                    
                 </ThemeProvider>
             </Card2>
         </>
