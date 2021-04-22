@@ -1,0 +1,21 @@
+.card{
+    position: absolute;
+    height: 230px;
+    left: 24px;
+    right: 24px;
+    top: 196px;
+    
+    background: #FFFFFF;
+    
+    /* shadow-soft */
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.text{
+    font-size: 12px;
+}
+
+.signButton{
+    border-radius: 10px;
+}
