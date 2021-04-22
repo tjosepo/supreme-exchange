@@ -1,10 +1,11 @@
-import SignInPage from './components/login/SignInPage';
+// import SignInPage from './components/login/SignInPage';
+import SignUpAdditional from './components/login/SignUpAdditional';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SignInPage />
+        <SignUpAdditional />
       </header>
     </div>
   );
