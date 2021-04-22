@@ -11,6 +11,8 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 
+import { createNewPost } from '../utils/Firestore';
+
 import './style/Posting.css';
 
 const conditions = [
@@ -51,8 +53,13 @@ const defaultLocation = {
 };
 
 export default function PostingPage() {
+  const [name, setName] = useState(undefined);
+  const [img, setImg] = useState(undefined);
+  const [price, setPrice] = useState(undefined);
+  const [location, setLocation] = useState(undefined);
   const [condition, setCondition] = useState('Like New');
   const [negotiable, setNegotiable] = useState('no');
+  const [error, setError] = useState(false);
 
   const handleChangeCondition = event => {
     setCondition(event.target.value);
@@ -62,6 +69,24 @@ export default function PostingPage() {
     setNegotiable(event.target.value);
   };
 
+  const handlePost = () => {
+    if(!name || !price || !location || !img) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    createNewPost(
+      'test',
+      name,
+      img,
+      price,
+      condition,
+      negotiable,
+      location
+    );
+    console.log('posted');
+  }
+
   return (
     <>
       <Header leftButton={<NotificationsNone />} rightButton={<AccountCircle />}>
@@ -70,11 +95,11 @@ export default function PostingPage() {
       <Card>
         <span className="label">Name</span>
         <div>
-          <TextField className="TextField" variant="outlined" size="small" />
+          <TextField className="TextField" variant="outlined" size="small" onChange={(e) => {setName(e.target.value)}}/>
         </div>
         <span className="label">Picture</span>
         <div>
-          <ImageUpload />
+          <ImageUpload setImage={setImg}/>
         </div>
       </Card>
       <PriceHistoryChart />
@@ -88,6 +113,7 @@ export default function PostingPage() {
             InputProps={{
               startAdornment: <InputAdornment position="start">$</InputAdornment>
             }}
+            onChange={(e) => {setPrice(parseFloat(e.target.value))}}
           />
         </div>
         <span className="label">Condition</span>
@@ -135,6 +161,7 @@ export default function PostingPage() {
             variant="outlined"
             size="small"
             placeholder="Montreal, QC"
+            onChange={(e) => {setLocation(e.target.value)}}
           />
         </div>
         <div className="MapContainer">
@@ -149,7 +176,7 @@ export default function PostingPage() {
           justify="center"
           alignItems="center">
           <Grid item xs={12}>
-            <IconButton className="PostButton" size="medium" variant="outline">
+            <IconButton color={error ? "secondary" : "default"} className="PostButton" size="medium" variant="outline" onClick={handlePost}>
               <Create fontSize="inherit" />
             </IconButton>
           </Grid>
