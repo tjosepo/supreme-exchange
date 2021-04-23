@@ -6,7 +6,7 @@ import './SearchResult.css';
 
 export default function SearchResult(props: Listing) {
   return (
-    <Link to="/listings">
+    <Link to={`/listings/${props.title}`}>
       <Card className="SearchResult">
         <img className="SearchResult__image" src={props.image} alt="" />
         <div className="SearchResult__info">

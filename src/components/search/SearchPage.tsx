@@ -1,64 +1,18 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState, useEffect } from 'react';
 import Header from '../shared/Header';
-import { Listing } from '../../interfaces/Interfaces';
 
 import './SearchPage.css';
 import SearchBar from './SearchBar';
 import { CircularProgress } from '@material-ui/core';
 import { NotificationsNone, AccountCircle } from '@material-ui/icons';
 import SearchResult from './SearchResult';
+import { getAllPosts } from '../utils/Firestore';
 import Hero from './Hero';
-
-const mockListings: Listing[] = [
-  {
-    id: '1',
-    title: 'Sesame Street LEGO',
-    price: 199.99,
-    subtitle: '2 available',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'Yes',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-  },
-  {
-    id: '2',
-    title: 'FRIENDS LEGO',
-    price: 500.99,
-    subtitle: '3 available',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'Yes',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt663079722b9ad39e/21319_alt1.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-  },
-  {
-    id: '3',
-    title: 'Baby Yoda Lego',
-    price: 150.99,
-    subtitle: '7 available',
-    condition: 'Like new',
-    pickup: 'First Come, First Served',
-    negotiable: 'No',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt4077c030eb5d127d/75318.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1'
-  },
-  {
-    id: '4',
-    title: 'LEGO Spare Pieces',
-    price: 175.99,
-    subtitle: '2 available',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'No',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blteb1a7b4f36578ecd/2000430.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1'
-  }
-];
 
 export default function SearchPage() {
   const [input, setInput] = useState('');
   const [list, setList] = useState<any[]>([]);
+  const [uniqueList, setUniqueList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const timeout = useRef<number | null>(null);
 
@@ -78,12 +32,28 @@ export default function SearchPage() {
 
     setInput(input);
     simulateLoading();
-    const filtered = mockListings;
-    // mockListings.filter(mockListings => {
-    //   return mockListings.title.toLowerCase().includes(input.toLowerCase());
-    // });
+    const filtered = uniqueList.filter(l => {
+      return l.title.toLowerCase().includes(input.toLowerCase());
+    });
     setList(filtered);
   };
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const posts = await getAllPosts();
+      let object: any[];
+      object = [];
+      posts.forEach(p => {
+        let present = false;
+        object.forEach(o => {
+          if(o.title === p.title) present = true
+        });
+        if(!present) object.push(p)
+      });
+      setUniqueList(object);
+    }
+    getPosts();
+  }, []);
 
   return (
     <div className="SearchPage">
@@ -101,8 +71,8 @@ export default function SearchPage() {
             <CircularProgress />
           </div>
         </div>
-      ) : input.length > 0 && list.length > 0 ? (
-        list.map(ele => <SearchResult key={ele.id} {...ele} />)
+      ) : list.length > 0 ? (
+        list.map(ele => <SearchResult key={ele.title} {...ele} />)
       ) : (
         input.length > 0 && (
           <div className="SearchPage__loading">

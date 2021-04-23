@@ -1,33 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from '../../map/Map';
-import { Listing } from '../../../interfaces/Interfaces';
-import Header from '../Header';
+import Header from '../../shared/Header';
 import Card from '../../shared/Card';
 import './ListingInfo.css';
 import { IconButton, TextField } from '@material-ui/core';
 import { Send, Bookmark, Share } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 
-interface Props {
-  listing: Listing;
-}
+import { getSpecificPost } from '../../utils/Firestore';
+import { useParams } from 'react-router-dom';
 
-const defaultListing = {
-  id: '1',
-  title: '123 Sesame Street 21324',
-  price: 199.99,
-  subtitle: 'Submitted an hour ago by JOHN123',
-  condition: 'Like new',
-  pickup: 'Can deliver',
-  negotiable: 'Yes',
-  image:
-    'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-};
+export default function ListingInfo() {
+  const [listing, setListing] = useState([]);
+  const { title, user } = useParams();
 
-export default function ListingInfo({ listing }: Props) {
-  listing = listing ?? defaultListing;
+  useEffect(() => {
+    const getListing = async () => {
+      const post = await getSpecificPost(title, user);
+      setListing(post);
+    }
+    getListing();
+  });
+
   return (
     <>
-      <Header icon={true}>{listing.title}</Header>
+      <Header leftButton={<Close />}>{listing.title}</Header>
       <Card className="ListingInfo" media={{ src: listing.image }}>
         <p className="ListingInfo__title">{listing.title}</p>
         <p className="ListingInfo__price">${listing.price}</p>

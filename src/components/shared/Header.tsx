@@ -1,5 +1,6 @@
 import { IconButton } from '@material-ui/core';
 import { ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './style/Header.css';
 
@@ -11,10 +12,16 @@ interface Props {
 }
 
 export default function Header({ onClick, children, leftButton, rightButton }: Props) {
+  let history = useHistory();
+
+  const handleBack = () => {
+    history.goBack();
+  }
+
   return (
     <div className="Header">
       {leftButton && (
-        <IconButton className={'LeftButton'} onClick={e => onClick?.(e)}>
+        <IconButton className={'LeftButton'} onClick={handleBack}>
           {leftButton}
         </IconButton>
       )}
