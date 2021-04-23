@@ -10,6 +10,9 @@ import Header from '../shared/Header';
 import Card2 from '../shared/Card2';
 import './style/SignPage.css';
 import InputBox from './SignInInputs'
+import {useState} from 'react';
+
+import { getImageLabel } from '../utils/TensorFlow';
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -27,6 +30,19 @@ const theme = createMuiTheme({
 
 export default function SignInPage(){
     const classes = useStyles();
+    const [isCriminal, setIsCriminal] = useState(false);
+
+    const handleImageUpload = async (e:any) => {
+        const image = e.target.files[0];
+        const url = URL.createObjectURL(image)
+        let img = new Image();
+        img.src = url;
+        const predict = await getImageLabel(img);
+        if (predict[0].prob > 0.6) {
+            alert('Sorry your are too high risk ' + predict[0].prob + ' chance to be a criminal');
+            setIsCriminal(true);
+        }
+    };
 
     return(
         <>
@@ -42,8 +58,14 @@ export default function SignInPage(){
                         <InputBox required={true} type="password" autocomplete="current-password">
                             Password
                         </InputBox>
+                        <input
+                            accept="image/*"
+                            id="upload-file-button"
+                            type="file"
+                            onChange={handleImageUpload}
+                        />
                         <div>
-                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
+                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton} disabled={isCriminal}>
                                 Sign In
                             </Button>
                         </div>
