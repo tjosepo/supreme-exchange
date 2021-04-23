@@ -1,11 +1,10 @@
-import React from 'react';
 import Map from '../../map/Map';
 import { Listing } from '../../../interfaces/Interfaces';
-import Header from '../Header';
+import Header from '../../shared/Header';
 import Card from '../../shared/Card';
 import './ListingInfo.css';
-import { IconButton, TextField } from '@material-ui/core';
-import { Send, Bookmark, Share } from '@material-ui/icons';
+import { IconButton, InputBase } from '@material-ui/core';
+import { Bookmark, Share, Close } from '@material-ui/icons';
 
 interface Props {
   listing: Listing;
@@ -27,7 +26,7 @@ export default function ListingInfo({ listing }: Props) {
   listing = listing ?? defaultListing;
   return (
     <>
-      <Header icon={true}>{listing.title}</Header>
+      <Header leftButton={<Close />}>{listing.title}</Header>
       <Card className="ListingInfo" media={{ src: listing.image }}>
         <p className="ListingInfo__title">{listing.title}</p>
         <p className="ListingInfo__price">${listing.price}</p>
@@ -57,27 +56,20 @@ export default function ListingInfo({ listing }: Props) {
         <hr />
         <div className="ListingInfo__message">
           <p className="ListingInfo__message__title">Message Seller</p>
-          <TextField
-            className="ListingInfo__message__text"
-            defaultValue="When can I come by?"
-            InputProps={{
-              endAdornment: (
-                <IconButton
-                  onClick={() => {
-                    console.log('send message');
-                  }}>
-                  <Send />
-                </IconButton>
-              )
-            }}
-          />
+          <InputBase className="ListingInfo__message__text" placeholder="When can I come by?" />
         </div>
         <div className="ListingInfo__footer">
-          <div className="ListingInfo__footer__button">
-            <Bookmark /> <span>Save</span>
+          <div>
+            <IconButton size="medium" className="ListingInfo__footer__button">
+              <Bookmark />
+            </IconButton>
+            <span>Save</span>
           </div>
-          <div className="ListingInfo__footer__button">
-            <Share /> <span>Share</span>
+          <div>
+            <IconButton size="medium" className="ListingInfo__footer__button">
+              <Share />
+            </IconButton>
+            <span>Share</span>
           </div>
         </div>
       </Card>

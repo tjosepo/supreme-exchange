@@ -1,0 +1,52 @@
+.TradeOffer {
+  position: fixed;
+  bottom: 57px;
+  border-top: 1px solid var(--border);
+  background-color: white;
+}
+
+.TradeOffer .top {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.TradeOffer .top > p {
+  margin-bottom: 12px;
+}
+
+.TradeOffer .top .line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.TradeOffer .top .line .price {
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.TradeOffer span {
+  font-size: 14px;
+}
+
+.TradeOffer span.faded {
+  color: var(--text-faded);
+  font-weight: 400;
+}
+
+.TradeOffer .bottom {
+  padding: 16px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.TradeOffer .bottom > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.TradeOffer .bottom .button {
+  background-color: #ededed !important;
+  margin-bottom: 8px;
+}

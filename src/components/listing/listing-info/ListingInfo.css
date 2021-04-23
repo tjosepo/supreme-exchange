@@ -54,23 +54,34 @@
   margin-bottom: 8px;
 }
 
-.ListingInfo__message__text {
-  width: 100%;
-}
-.ListingInfo__message__text input {
-  font-size: 0.875rem;
-  padding-left: 16px;
-  color: var(--text-faded);
-}
-
 .ListingInfo__footer {
   color: var(--text);
   display: flex;
   justify-content: space-around;
 }
 
-.ListingInfo__footer__button {
+.ListingInfo__footer > div {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+}
+
+.ListingInfo__footer__button {
+  background-color: #ededed !important;
+  margin-bottom: 8px;
+}
+
+.ListingInfo__message__text.MuiInputBase-root {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-light);
+  box-shadow: var(--shadow-soft);
+  height: 36px;
+  border-radius: 30px;
+  padding: 0 16px;
+}
+
+.ListingInfo__message__text.MuiInputBase-root:hover,
+.ListingInfo__message__text.MuiInputBase-root:focus {
+  box-shadow: var(--shadow-hard);
 }

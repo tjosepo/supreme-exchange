@@ -30,7 +30,13 @@ const BottomNav = () => {
             component={Link}
             to="/new-ad"
           />
-          <BottomNavigationAction label="Messages" value="messages" icon={<Message />} />
+          <BottomNavigationAction
+            label="Messages"
+            value="messages"
+            icon={<Message />}
+            component={Link}
+            to="/messaging"
+          />
           <BottomNavigationAction
             label="Account"
             value="account"
