@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 import ListingShort from './ListingShort';
 import './style/ProductListings.css';
+
+import { getAllPostsWithName } from '../utils/Firestore';
 
 const mockListings = [
   {
@@ -52,22 +54,51 @@ const mockListings = [
   }
 ];
 
-export default function ProductListings() {
+export default function ProductListings(props) {
   const [asc, setAsc] = useState(true);
+  const [listings, setListings] = useState([]);
 
-  const compareAsc = (a: { price: number }, b: { price: number }) => {
+  useEffect(() => {
+    let getListings = async () => {
+      let temp = await getAllPostsWithName(props.title);
+      temp = temp.sort((a, b) => {
+        if (a.price < b.price) return -1;
+        if (a.price > b.price) return 1;
+        return 0;
+      });
+      temp = temp.map(t => {
+        let temp = new Date(1970, 0, 1); // Epoch
+        temp.setSeconds(t.createdAt.seconds);
+        return {
+          ...t,
+          pickup: 'Can deliver',
+          subtitle: `Submitted ${temp} by ${t.createdBy}`,
+          title: t.name
+        }
+      });
+      setListings(temp);
+    }
+    getListings();
+  },
+  [props]);
+
+  
+  const compareAsc = (a, b) => {
     if (a.price < b.price) return -1;
     if (a.price > b.price) return 1;
     return 0;
   };
 
-  const compareDesc = (a: { price: number }, b: { price: number }) => {
+  const compareDesc = (a, b) => {
     if (a.price < b.price) return 1;
     if (a.price > b.price) return -1;
     return 0;
   };
 
-  const listings = mockListings.sort(asc ? compareAsc : compareDesc);
+  const handleSorting = () => {
+    setListings(listings.sort(!asc ? compareAsc : compareDesc));
+    setAsc(!asc);
+  }
 
   return (
     <div className="ProductListing">
@@ -76,7 +107,7 @@ export default function ProductListings() {
         <Button
           size="large"
           endIcon={asc ? <ExpandMore /> : <ExpandLess />}
-          onClick={() => setAsc(!asc)}>
+          onClick={handleSorting}>
           Price
         </Button>
       </div>

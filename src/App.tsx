@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={SearchPage} />
-          <Route path="/listings" exact component={ListingPage} />
-          <Route path="/listing-info" exact component={ListingInfo} />
+          <Route path="/listings/:title" exact component={ListingPage} />
+          <Route path="/listing-info/:user/:title" exact component={ListingInfo} />
           <Route path="/new-ad" exact component={PostingPage} />
           <Route path="/account" exact component={SignInPage} />
         </Switch>

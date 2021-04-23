@@ -1,3 +1,4 @@
+import { ListSharp } from '@material-ui/icons';
 import firebase from 'firebase';
 
 const config = {
@@ -26,3 +27,18 @@ export const createNewPost = (user, name, image, price, condition, negotiable, l
             location: location
         });
 };
+
+export const getAllPosts = async () => {
+    let snapshot = await db.collection('posts').get();
+    return snapshot.docs.map(doc => doc.data());
+}
+
+export const getAllPostsWithName = async (name) => {
+    let list = await getAllPosts();
+    return list.filter(e => e.name === name);
+}
+
+export const getSpecificPost = async (name, user) => {
+    let list = await getAllPosts();
+    return list.filter(e => e.name === name && e.createdBy === user)[0];
+}

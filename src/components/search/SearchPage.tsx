@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState, useEffect } from 'react';
 import Header from '../shared/Header';
 import { Listing } from '../../interfaces/Interfaces';
 
@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import { CircularProgress } from '@material-ui/core';
 import { NotificationsNone, AccountCircle } from '@material-ui/icons';
 import SearchResult from './SearchResult';
+import { getAllPosts } from '../utils/Firestore';
 
 const mockListings: Listing[] = [
   {
@@ -58,6 +59,7 @@ const mockListings: Listing[] = [
 export default function SearchPage() {
   const [input, setInput] = useState('');
   const [list, setList] = useState<any[]>([]);
+  const [uniqueList, setUniqueList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const timeout = useRef<number | null>(null);
 
@@ -77,12 +79,31 @@ export default function SearchPage() {
 
     setInput(input);
     simulateLoading();
-    const filtered = mockListings;
-    // mockListings.filter(mockListings => {
-    //   return mockListings.title.toLowerCase().includes(input.toLowerCase());
-    // });
+    const filtered = uniqueList.filter(l => {
+      return l.title.includes(input);
+    });
     setList(filtered);
   };
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const posts = await getAllPosts();
+      let object: any[];
+      object = [];
+      posts.forEach(p => {
+        let present = false;
+        object.forEach(o => {
+          if(o.name === p.name) present = true
+        });
+        p.pickup = 'Can deliver';
+        p.title = p.name;
+        p.subtitle = '2 available';
+        if(!present) object.push(p)
+      });
+      setUniqueList(object);
+    }
+    getPosts();
+  }, []);
 
   return (
     <div className="SearchPage">
@@ -99,7 +120,7 @@ export default function SearchPage() {
           </div>
         </div>
       ) : list.length > 0 ? (
-        list.map(ele => <SearchResult key={ele.id} {...ele} />)
+        list.map(ele => <SearchResult key={ele.title} {...ele} />)
       ) : (
         <div className="SearchPage__loading">
           <div className="SearchPage__loading__message">
