@@ -1,4 +1,3 @@
-import { ListSharp } from '@material-ui/icons';
 import firebase from 'firebase';
 
 const config = {
@@ -14,18 +13,8 @@ const config = {
 firebase.initializeApp(config)
 const db = firebase.firestore()
 
-export const createNewPost = (user, name, image, price, condition, negotiable, location) => {
-    return db.collection('posts')
-        .add({
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            createdBy: user,
-            name: name,
-            image: image,
-            price: price,
-            condition: condition,
-            negotiable: negotiable,
-            location: location
-        });
+export const createNewPost = async (post) => {
+    return await db.collection('posts').add(post);
 };
 
 export const getAllPosts = async () => {
@@ -33,12 +22,12 @@ export const getAllPosts = async () => {
     return snapshot.docs.map(doc => doc.data());
 }
 
-export const getAllPostsWithName = async (name) => {
+export const getAllPostsWithTitle = async (title) => {
     let list = await getAllPosts();
-    return list.filter(e => e.name === name);
+    return list.filter(e => e.title.toLowerCase() === title.toLowerCase());
 }
 
-export const getSpecificPost = async (name, user) => {
+export const getSpecificPost = async (title, user) => {
     let list = await getAllPosts();
-    return list.filter(e => e.name === name && e.createdBy === user)[0];
+    return list.filter(e => e.title.toLowerCase() === title.toLowerCase() && e.user.toLowerCase() === user.toLowerCase())[0];
 }

@@ -16,4 +16,5 @@ export interface Listing {
   image: string;
   location?: Location;
   createdBy?: string;
+  user?: string;
 }

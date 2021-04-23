@@ -7,21 +7,8 @@ import { IconButton, TextField } from '@material-ui/core';
 import { Send, Bookmark, Share } from '@material-ui/icons';
 import { Close } from '@material-ui/icons';
 
-
 import { getSpecificPost } from '../../utils/Firestore';
 import { useParams } from 'react-router-dom';
-
-const defaultListing = {
-  id: '1',
-  title: '123 Sesame Street 21324',
-  price: 199.99,
-  subtitle: 'Submitted an hour ago by JOHN123',
-  condition: 'Like new',
-  pickup: 'Can deliver',
-  negotiable: 'Yes',
-  image:
-    'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-};
 
 export default function ListingInfo() {
   const [listing, setListing] = useState([]);
@@ -29,15 +16,7 @@ export default function ListingInfo() {
 
   useEffect(() => {
     const getListing = async () => {
-      const t = await getSpecificPost(title, user);
-      let temp = new Date(1970, 0, 1); // Epoch
-      temp.setSeconds(t.createdAt.seconds);
-      let post = {
-        ...t,
-        pickup: 'Can deliver',
-        subtitle: `Submitted ${temp} by ${t.createdBy}`,
-        title: t.name
-      }
+      const post = await getSpecificPost(title, user);
       setListing(post);
     }
     getListing();

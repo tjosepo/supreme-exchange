@@ -5,54 +5,7 @@ import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import ListingShort from './ListingShort';
 import './style/ProductListings.css';
 
-import { getAllPostsWithName } from '../utils/Firestore';
-
-const mockListings = [
-  {
-    id: '1',
-    title: '123 Sesame Street 21324',
-    price: 199.99,
-    subtitle: 'Submitted an hour ago by JOHN123',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'Yes',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-  },
-  {
-    id: '2',
-    title: '123 Sesame Street 21324',
-    price: 500.99,
-    subtitle: 'Submitted a week ago by LegoDude97',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'Yes',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt663079722b9ad39e/21319_alt1.jpg?fit=bounds&format=jpg&quality=80&width=528&height=528&dpr=1'
-  },
-  {
-    id: '3',
-    title: '123 Sesame Street 21324',
-    price: 150.99,
-    subtitle: 'Submitted an hour ago by HALIBABA',
-    condition: 'Like new',
-    pickup: 'First Come, First Served',
-    negotiable: 'No',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blt4077c030eb5d127d/75318.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1'
-  },
-  {
-    id: '4',
-    title: '123 Sesame Street 21324',
-    price: 175.99,
-    subtitle: 'Submitted an hour ago by PokemonGoLover69',
-    condition: 'Like new',
-    pickup: 'Can deliver',
-    negotiable: 'No',
-    image:
-      'https://www.lego.com/cdn/cs/set/assets/blteb1a7b4f36578ecd/2000430.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1'
-  }
-];
+import { getAllPostsWithTitle } from '../utils/Firestore';
 
 export default function ProductListings(props) {
   const [asc, setAsc] = useState(true);
@@ -60,21 +13,11 @@ export default function ProductListings(props) {
 
   useEffect(() => {
     let getListings = async () => {
-      let temp = await getAllPostsWithName(props.title);
+      let temp = await getAllPostsWithTitle(props.title);
       temp = temp.sort((a, b) => {
         if (a.price < b.price) return -1;
         if (a.price > b.price) return 1;
         return 0;
-      });
-      temp = temp.map(t => {
-        let temp = new Date(1970, 0, 1); // Epoch
-        temp.setSeconds(t.createdAt.seconds);
-        return {
-          ...t,
-          pickup: 'Can deliver',
-          subtitle: `Submitted ${temp} by ${t.createdBy}`,
-          title: t.name
-        }
       });
       setListings(temp);
     }
@@ -112,7 +55,7 @@ export default function ProductListings(props) {
         </Button>
       </div>
       {listings?.map(ele => (
-        <ListingShort {...ele} />
+        <ListingShort key={ele.createdAt} {...ele} />
       ))}
     </div>
   );
