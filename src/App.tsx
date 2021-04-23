@@ -6,6 +6,7 @@ import BottomNav from './components/shared/BottomNav';
 import ListingPage from './components/listing/ListingPage';
 import ListingInfo from './components/listing/listing-info/ListingInfo';
 import SignInPage from './components/login/SignInPage';
+import PaymentPage from './components/payment/PaymentPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/listing-info" exact component={ListingInfo} />
           <Route path="/new-ad" exact component={PostingPage} />
           <Route path="/account" exact component={SignInPage} />
+          <Route path="/payment" exact component={PaymentPage} />
         </Switch>
         <BottomNav />
       </Router>
