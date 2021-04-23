@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const theme = createMuiTheme({
     palette: {
       primary: green,
-      secondary: blue,
+      secondary: red,
       error: red,
     },
   });
@@ -110,7 +110,7 @@ export default function SignInPage(){
                                     <Button
                                         component="span"
                                         variant="contained"
-                                        color="secondary"
+                                        color={criminality && isCriminal ? "secondary" : "primary"}
                                         disableElevation
                                         fullWidth
                                         className={classes.signButton}
