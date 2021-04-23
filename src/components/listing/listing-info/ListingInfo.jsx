@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import Map from '../../map/Map';
 import Header from '../../shared/Header';
 import Card from '../../shared/Card';
 import './ListingInfo.css';
-import { IconButton, TextField } from '@material-ui/core';
-import { Send, Bookmark, Share } from '@material-ui/icons';
-import { Close } from '@material-ui/icons';
+import { IconButton, InputBase } from '@material-ui/core';
+import { Bookmark, Share, Close } from '@material-ui/icons';
+import { useState, useEffect } from 'react';
 
 import { getSpecificPost } from '../../utils/Firestore';
 import { useParams } from 'react-router-dom';
@@ -54,27 +53,20 @@ export default function ListingInfo() {
         <hr />
         <div className="ListingInfo__message">
           <p className="ListingInfo__message__title">Message Seller</p>
-          <TextField
-            className="ListingInfo__message__text"
-            defaultValue="When can I come by?"
-            InputProps={{
-              endAdornment: (
-                <IconButton
-                  onClick={() => {
-                    console.log('send message');
-                  }}>
-                  <Send />
-                </IconButton>
-              )
-            }}
-          />
+          <InputBase className="ListingInfo__message__text" placeholder="When can I come by?" />
         </div>
         <div className="ListingInfo__footer">
-          <div className="ListingInfo__footer__button">
-            <Bookmark /> <span>Save</span>
+          <div>
+            <IconButton size="medium" className="ListingInfo__footer__button">
+              <Bookmark />
+            </IconButton>
+            <span>Save</span>
           </div>
-          <div className="ListingInfo__footer__button">
-            <Share /> <span>Share</span>
+          <div>
+            <IconButton size="medium" className="ListingInfo__footer__button">
+              <Share />
+            </IconButton>
+            <span>Share</span>
           </div>
         </div>
       </Card>
