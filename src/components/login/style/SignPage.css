@@ -1,12 +1,21 @@
-.text{
-    font-size: 12px;
-    text-align: center;
+.SignUpPage .text,
+.SignInPage .text {
+  font-size: 12px;
+  text-align: center;
 }
 
-.signButton{
-    border-radius: 10px;
+.SignUpPage .form > div,
+.SignInPage .form > div {
+  margin-bottom: 16px;
 }
 
-.form div{
-    margin-bottom: 16px;
+.SignUpPage .form,
+.SignInPage .form {
+  margin-bottom: 16px;
+}
+
+.SignUpPage a,
+.SignInPage a {
+  font-weight: 500;
+  text-decoration: underline;
 }
