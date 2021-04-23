@@ -15,4 +15,6 @@ export interface Listing {
   negotiable: string;
   image: string;
   location?: Location;
+  createdBy?: string;
+  user?: string;
 }
