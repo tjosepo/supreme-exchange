@@ -52,3 +52,37 @@ export const loginUser = async (name, pass) => {
     let valid = users.filter(x => x.name === name && x.pass === pass);
     return valid.length > 0;
 }
+
+export const writeMessage = async (sender, receiver, message) => {
+    return await db.collection('messages').add({
+        sender: sender,
+        receiver: receiver,
+        message: message,
+        date: new Date()
+    });
+}
+
+export const getAllMessages = async () => {
+    let snapshot = await db.collection('messages').get();
+    return snapshot.docs.map(doc => doc.data());
+}
+
+export const viewAllUserMessages = async (user) => {
+    let mess = await getAllMessages();
+    let filtered = mess.filter(x => x.sender === user || x.receiver === user);
+    let messages = []
+    filtered.forEach(x => {
+        let present = false;
+        messages.forEach(y => {
+            if((y.sender === x.sender && y.receiver === x.receiver) || (y.receiver === x.sender && y.sender === x.receiver)) present = true;
+        })
+        if(!present) messages.push(x);
+    })
+    return messages
+}
+
+export const getConversation = async (u1, u2) => {
+    let mess = await getAllMessages();
+    let filtered = mess.filter(x=> (x.sender === u1 && x.receiver === u2) || (x.sender === u2 && x.receiver === u1));
+    return filtered;
+}

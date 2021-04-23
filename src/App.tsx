@@ -9,6 +9,7 @@ import SignInPage from './components/login/SignInPage';
 import SignUpPage from './components/login/SignUpPage';
 import SignUpAdditional from './components/login/SignUpAdditional';
 import Messaging from './components/messaging/Messaging';
+import MessagingPage from './components/messaging/MessagingPage';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/listings/:title" exact component={ListingPage} />
           <Route path="/listing-info/:user/:title" exact component={ListingInfo} />
           <Route path="/new-ad" exact component={PostingPage} />
-          <Route path="/messaging" exact component={Messaging} />
+          <Route path="/messaging" exact component={MessagingPage} />
+          <Route path="/messaging/:receiver/:sender" exact component={Messaging} />
           <Route path="/account" exact component={SignInPage} />
           <Route path="/sign-up" exact component={SignUpPage} />
           <Route path="/sign-up-additional" exact component={SignUpAdditional} />
