@@ -13,6 +13,7 @@ import InputBox from './SignInInputs'
 import {useState} from 'react';
 
 import { getImageLabel } from '../utils/TensorFlow';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -31,8 +32,10 @@ const theme = createMuiTheme({
 export default function SignInPage(){
     const classes = useStyles();
     const [isCriminal, setIsCriminal] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleImageUpload = async (e:any) => {
+        setLoading(true);
         const image = e.target.files[0];
         const url = URL.createObjectURL(image)
         let img = new Image();
@@ -42,6 +45,7 @@ export default function SignInPage(){
             alert('Sorry your are too high risk ' + predict[0].prob + ' chance to be a criminal');
             setIsCriminal(true);
         }
+        setLoading(false);
     };
 
     return(
@@ -51,28 +55,30 @@ export default function SignInPage(){
             </Header>
             <Card2>
                 <ThemeProvider theme={theme}>
-                    <form className="form">
-                        <InputBox required={true} type="text" autocomplete="username">
-                            Username
-                        </InputBox>
-                        <InputBox required={true} type="password" autocomplete="current-password">
-                            Password
-                        </InputBox>
-                        <input
-                            accept="image/*"
-                            id="upload-file-button"
-                            type="file"
-                            onChange={handleImageUpload}
-                        />
-                        <div>
-                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton} disabled={isCriminal}>
-                                Sign In
-                            </Button>
-                        </div>
-                    </form>
-                    <p className="text">
-                        Don't have an account? <a href="https://www.w3schools.com/tags/tag_br.asp">Sign Up</a>
-                    </p>
+                    {loading ? <CircularProgress /> : <>
+                        <form className="form">
+                            <InputBox required={true} type="text" autocomplete="username">
+                                Username
+                            </InputBox>
+                            <InputBox required={true} type="password" autocomplete="current-password">
+                                Password
+                            </InputBox>
+                            <input
+                                accept="image/*"
+                                id="upload-file-button"
+                                type="file"
+                                onChange={handleImageUpload}
+                            />
+                            <div>
+                                <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton} disabled={isCriminal}>
+                                    Sign In
+                                </Button>
+                            </div>
+                        </form>
+                        <p className="text">
+                            Don't have an account? <a href="https://www.w3schools.com/tags/tag_br.asp">Sign Up</a>
+                        </p></>
+                    }
                 </ThemeProvider>
             </Card2>
         </>
