@@ -6,7 +6,7 @@ import './style/ListingShort.css';
 
 export default function ListingShort(props: Listing) {
   return (
-    <Link to="/listing-info">
+    <Link to={`/listing-info/${props.user}/${props.title}`}>
       <Card className="ListingShort" media={{ src: props.image }}>
         <p className="ListingShort__title">{props.title}</p>
         <p className="ListingShort__price">${props.price}</p>

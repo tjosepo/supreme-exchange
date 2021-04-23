@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-
+import { useHistory } from "react-router-dom";
 import { createNewPost } from '../utils/Firestore';
 
 import './style/Posting.css';
@@ -45,6 +45,17 @@ const nego = [
   }
 ];
 
+const pick = [
+  {
+    value: 'Can deliver',
+    label: 'Can deliver'
+  },
+  {
+    value: 'First come, first serve',
+    label: 'First Come, First Served'
+  }
+]
+
 const defaultLocation = {
   address: '1455 De Maisonneuve Blvd. W.',
   city: 'Montreal',
@@ -59,7 +70,13 @@ export default function PostingPage() {
   const [location, setLocation] = useState(undefined);
   const [condition, setCondition] = useState('Like New');
   const [negotiable, setNegotiable] = useState('no');
+  const [pickup, setPickup] = useState('Can deliver');
   const [error, setError] = useState(false);
+  const history = useHistory();
+
+  const handleChangePickup = event => {
+    setPickup(event.target.value);
+  }
 
   const handleChangeCondition = event => {
     setCondition(event.target.value);
@@ -69,22 +86,32 @@ export default function PostingPage() {
     setNegotiable(event.target.value);
   };
 
-  const handlePost = () => {
+  const handlePost = async () => {
     if(!name || !price || !location || !img) {
       setError(true);
       return;
     }
+
     setError(false);
-    createNewPost(
-      'test',
-      name,
-      img,
-      price,
-      condition,
-      negotiable,
-      location
-    );
+    const user = 'test';
+    const currDate = new Date();
+    const dateStr = currDate.toISOString().substring(0, 10);
+    const subtitle = `Submitted on ${dateStr} by ${user}`
+    const post = {
+      user: user,
+      title: name,
+      image: img,
+      price: price,
+      condition: condition,
+      negotiable: negotiable,
+      pickup: pickup,
+      location: location,
+      createdAt: currDate,
+      subtitle: subtitle
+    }
+    await createNewPost(post);
     console.log('posted');
+    history.push("/");
   }
 
   return (
@@ -148,6 +175,25 @@ export default function PostingPage() {
             variant="outlined"
             size="small">
             {nego.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </TextField>
+        </div>
+        <span className="label">Pickup</span>
+        <div>
+          <TextField
+            className="TextField"
+            select
+            value={pickup}
+            onChange={handleChangePickup}
+            SelectProps={{
+              native: true
+            }}
+            variant="outlined"
+            size="small">
+            {pick.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
