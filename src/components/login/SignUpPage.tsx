@@ -1,64 +1,57 @@
-import { Button,
-    createStyles,
-    makeStyles,
-    createMuiTheme,
-    ThemeProvider,
-    Theme,
-} from '@material-ui/core';
-import { green } from '@material-ui/core/colors'
+import { Button, TextField } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
 import Header from '../shared/Header';
-import Card2 from '../shared/Card2';
+import Card from '../shared/Card';
 import './style/SignPage.css';
-import InputBox from './SignInInputs'
+import { FormEvent } from 'react';
 
-const useStyles = makeStyles((theme: Theme) => 
-    createStyles({
-        signButton: {
-            borderRadius: 10,
-        }
-    }),
-);
+export default function SignUpPage() {
+  const history = useHistory();
 
-const theme = createMuiTheme({
-    palette: {
-      primary: green,
-    },
-  });
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    history.push('/sign-up-additional');
+  };
 
-export default function SignUpPage(){
-    const classes = useStyles();
+  return (
+    <>
+      <Header>Supreme Exchange</Header>
+      <Card className="SignUpPage">
+        <form className="form" onSubmit={submit}>
+          <label className="label" htmlFor="password-input">
+            Email
+          </label>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            required={true}
+            type="email"
+            autoComplete="email"
+          />
 
-    return(
-        <>
-            <Header>
-                Supreme Exchange
-            </Header>
-            <Card2>
-                <ThemeProvider theme={theme}>
-                    <form className="form">
-                        <InputBox required={true} type="email" autocomplete="email">
-                            Email Address
-                        </InputBox>
-                        
-                        <InputBox required={true} type="text" autocomplete="username">
-                            Username
-                        </InputBox>
+          <label className="label" htmlFor="password-input">
+            Password
+          </label>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            required={true}
+            type="password"
+            autoComplete="new-password"
+          />
 
-                        <InputBox required={true} type="password" autocomplete="new-password">
-                            Password
-                        </InputBox>
-                        <div>
-                            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth className={classes.signButton}>
-                                Create Account
-                            </Button>
-                        </div>
-                    </form>
-                    <p className="text">
-                        Already have an account? <a href="https://www.w3schools.com/tags/tag_br.asp">Sign In</a>
-                    </p>
-                    
-                </ThemeProvider>
-            </Card2>
-        </>
-    );
+          <div>
+            <Button type="submit" variant="contained" color="primary" disableElevation fullWidth>
+              Create Account
+            </Button>
+          </div>
+        </form>
+        <p className="text">
+          Already have an account? <Link to="/account">Sign In</Link>
+        </p>
+      </Card>
+    </>
+  );
 }

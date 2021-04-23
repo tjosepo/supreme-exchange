@@ -6,6 +6,8 @@ import BottomNav from './components/shared/BottomNav';
 import ListingPage from './components/listing/ListingPage';
 import ListingInfo from './components/listing/listing-info/ListingInfo';
 import SignInPage from './components/login/SignInPage';
+import SignUpPage from './components/login/SignUpPage';
+import SignUpAdditional from './components/login/SignUpAdditional';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/listing-info/:user/:title" exact component={ListingInfo} />
           <Route path="/new-ad" exact component={PostingPage} />
           <Route path="/account" exact component={SignInPage} />
+          <Route path="/sign-up" exact component={SignUpPage} />
+          <Route path="/sign-up-additional" exact component={SignUpAdditional} />
         </Switch>
         <BottomNav />
       </Router>

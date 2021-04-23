@@ -8,6 +8,7 @@ import { CircularProgress } from '@material-ui/core';
 import { NotificationsNone, AccountCircle } from '@material-ui/icons';
 import SearchResult from './SearchResult';
 import { getAllPosts } from '../utils/Firestore';
+import Hero from './Hero';
 
 const mockListings: Listing[] = [
   {
@@ -110,7 +111,9 @@ export default function SearchPage() {
       <Header leftButton={<NotificationsNone />} rightButton={<AccountCircle />}>
         <SearchBar onChange={handleSearch} />
       </Header>
-      {loading ? (
+      {input.length === 0 && <Hero />}
+
+      {input.length > 0 && loading ? (
         <div className="SearchPage__loading">
           <div className="SearchPage__loading__message">
             Searching for <span>{input}</span>
@@ -122,14 +125,16 @@ export default function SearchPage() {
       ) : list.length > 0 ? (
         list.map(ele => <SearchResult key={ele.title} {...ele} />)
       ) : (
-        <div className="SearchPage__loading">
-          <div className="SearchPage__loading__message">
-            Found no results for <span>{input}</span>
+        input.length > 0 && (
+          <div className="SearchPage__loading">
+            <div className="SearchPage__loading__message">
+              Found no results for <span>{input}</span>
+            </div>
+            <div className="SearchPage__loading__message">
+              <span>Tip:</span> Try searching for "Lego".
+            </div>
           </div>
-          <div className="SearchPage__loading__message">
-            <span>Tip:</span> Try searching for "Lego".
-          </div>
-        </div>
+        )
       )}
     </div>
   );
