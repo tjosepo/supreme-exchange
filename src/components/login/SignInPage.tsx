@@ -12,7 +12,6 @@ import './style/SignPage.css';
 import InputBox from './SignInInputs'
 import {useState} from 'react';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import Typography from '@material-ui/core/Typography';
 
 import { getImageLabel } from '../utils/TensorFlow';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -25,17 +24,16 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             flexDirection: 'column'
         },
-        title: {
-            marginBottom: '20px'
-        },
         signButton: {
             borderRadius: 10,
             marginTop: 10,
             marginBottom: 10
         },
         wrapper: {
-            margin: theme.spacing(1),
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),
             position: 'relative',
+            width: '100%'
         },
         buttonProgress: {
             color: green[500],
@@ -87,9 +85,6 @@ export default function SignInPage(){
             <Card2>
                 <ThemeProvider theme={theme}>
                     <div className={classes.container}>
-                        <Typography variant='h4' className={classes.title}>
-                            Sign in
-                        </Typography>
                         <form className="form">
                             <InputBox required={true} type="text" autocomplete="username">
                                 Username
