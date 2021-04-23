@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from "react-router-dom";
 import { createNewPost } from '../utils/Firestore';
+import { getCurrentUser } from '../utils/Authentication';
 
 import './style/Posting.css';
 
@@ -93,7 +94,14 @@ export default function PostingPage() {
     }
 
     setError(false);
-    const user = 'test';
+
+    const user = getCurrentUser();
+    if(!user) {
+      setError(true);
+      alert('Must be logged in to post')
+      return;
+    }
+
     const currDate = new Date();
     const dateStr = currDate.toISOString().substring(0, 10);
     const subtitle = `Submitted on ${dateStr} by ${user}`

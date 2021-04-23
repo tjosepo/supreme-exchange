@@ -1,9 +1,13 @@
+import { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 // import { green } from '@material-ui/core/colors';
 import Header from '../shared/Header';
 import Card from '../shared/Card';
 import './style/SignPage.css';
+import { loginUser } from '../utils/Firestore';
+import { getCurrentUser } from '../utils/Authentication';
+import AccountPage from './AccountPage';
 // import { useState } from 'react';
 
 // import { getImageLabel } from '../utils/TensorFlow';
@@ -39,6 +43,10 @@ import './style/SignPage.css';
 // );
 
 export default function SignInPage() {
+  const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
+  const [error, setError] = useState(false);
   // const classes = useStyles();
   // const [isCriminal, setIsCriminal] = useState(true);
   // const [loading, setLoading] = useState(false);
@@ -60,9 +68,33 @@ export default function SignInPage() {
   //   setLoading(false);
   // };
 
+  useEffect(() => {
+    let curr = getCurrentUser();
+    if(!curr) setIsLogged(false);
+    else setIsLogged(true);
+  }, []);
+
+  const handleLogin = async () => {
+    if(!user || !pass) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    const valid = await loginUser(user, pass)
+    
+    if(!valid) {
+      alert('Invalid credentials')
+      setError(true);
+      return;
+    }
+    setIsLogged(true);
+    localStorage.setItem('currentUser', user);
+  }
+
   return (
     <>
       <Header>Supreme Exchange</Header>
+      {isLogged ? <AccountPage logout={setIsLogged}></AccountPage> :
       <Card className="SignInPage">
         <form className="form">
           <label className="label" htmlFor="email-input">
@@ -76,6 +108,7 @@ export default function SignInPage() {
             autoComplete="email"
             variant="outlined"
             size="small"
+            onChange={(e:any) => setUser(e.target.value)}
           />
 
           <label className="label" htmlFor="password-input">
@@ -89,9 +122,10 @@ export default function SignInPage() {
             autoComplete="current-password"
             variant="outlined"
             size="small"
+            onChange={(e:any) => setPass(e.target.value)}
           />
 
-          <Button type="submit" variant="contained" color="primary" disableElevation fullWidth>
+          <Button variant="contained" color={error ? "secondary" : "primary"} disableElevation fullWidth onClick={handleLogin}>
             Sign In
           </Button>
         </form>
@@ -99,6 +133,7 @@ export default function SignInPage() {
           Don't have an account? <Link to="/sign-up">Sign Up</Link>
         </p>
       </Card>
+      }
     </>
   );
 }
