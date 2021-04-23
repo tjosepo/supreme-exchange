@@ -5,7 +5,7 @@ import { Button,
     ThemeProvider,
     Theme,
 } from '@material-ui/core';
-import { green, blue, red  } from '@material-ui/core/colors'
+import { green, red  } from '@material-ui/core/colors'
 import Header from '../shared/Header';
 import Card2 from '../shared/Card2';
 import './style/SignPage.css';
