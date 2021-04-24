@@ -21,7 +21,7 @@ function App() {
           <Route path="/listings/:title" exact component={ListingPage} />
           <Route path="/listing-info/:user/:title" exact component={ListingInfo} />
           <Route path="/new-ad" exact component={PostingPage} />
-          <Route path="/messaging" exact component={MessagingPage} />
+          <Route path="/messages" exact component={MessagingPage} />
           <Route path="/messaging/:receiver/:sender" exact component={Messaging} />
           <Route path="/account" exact component={SignInPage} />
           <Route path="/payment" exact component={PaymentPage} />

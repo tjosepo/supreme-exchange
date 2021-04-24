@@ -35,7 +35,7 @@ const BottomNav = () => {
             value="messages"
             icon={<Message />}
             component={Link}
-            to="/messaging"
+            to="/messages"
           />
           <BottomNavigationAction
             label="Account"
