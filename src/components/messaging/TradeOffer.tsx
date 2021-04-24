@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { writeMessage } from '../utils/Firestore';
+import { Link } from 'react-router-dom';
 
 export default function TradeOffer(props:any) {
   const [mes, setMes] = useState('');
@@ -44,9 +45,11 @@ export default function TradeOffer(props:any) {
           <span>Refuse</span>
         </div>
         <div>
-          <IconButton size="medium" className="button">
-            <Check />
-          </IconButton>
+          <Link to="/payment">
+            <IconButton size="medium" className="button">
+              <Check />
+            </IconButton>
+          </Link>
           <span>Accept</span>
         </div>
       </div>
