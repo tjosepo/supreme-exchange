@@ -29,7 +29,7 @@ export default function Messaging() {
       setMessages(temp)
     }
     getMessages();
-  }, []);
+  }, [receiver, sender]);
 
   const reload = () => {
     let getMessages = async () => {
