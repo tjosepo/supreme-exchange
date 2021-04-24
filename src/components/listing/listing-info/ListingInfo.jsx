@@ -2,16 +2,32 @@ import Map from '../../map/Map';
 import Header from '../../shared/Header';
 import Card from '../../shared/Card';
 import './ListingInfo.css';
-import { IconButton, InputBase } from '@material-ui/core';
+import { IconButton, InputBase, Button } from '@material-ui/core';
 import { Bookmark, Share, Close } from '@material-ui/icons';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { getSpecificPost } from '../../utils/Firestore';
 import { useParams } from 'react-router-dom';
 
+import { writeMessage } from '../../utils/Firestore';
+import { getCurrentUser } from '../../utils/Authentication';
+
 export default function ListingInfo() {
   const [listing, setListing] = useState([]);
+  const [message, setMessage] = useState('');
   const { title, user } = useParams();
+  const history = useHistory();
+
+  const handleNewMessage = async () => {
+    let curr = getCurrentUser();
+    if(!curr) {
+      alert('Must be logged in to view messages');
+      return;
+    }
+    await writeMessage(curr, user, message);
+    history.push('/messaging')
+  }
 
   useEffect(() => {
     const getListing = async () => {
@@ -53,7 +69,8 @@ export default function ListingInfo() {
         <hr />
         <div className="ListingInfo__message">
           <p className="ListingInfo__message__title">Message Seller</p>
-          <InputBase className="ListingInfo__message__text" placeholder="When can I come by?" />
+          <InputBase className="ListingInfo__message__text" placeholder="When can I come by?" onChange={(e) => setMessage(e.target.value)}/>
+          <Button onClick={handleNewMessage}>Send</Button>
         </div>
         <div className="ListingInfo__footer">
           <div>

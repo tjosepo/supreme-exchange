@@ -1,8 +1,22 @@
 import './TradeOffer.css';
+import { useState } from 'react';
 import { IconButton } from '@material-ui/core';
 import { Close, Check } from '@material-ui/icons';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { writeMessage } from '../utils/Firestore';
 
-export default function TradeOffer() {
+export default function TradeOffer(props:any) {
+  const [mes, setMes] = useState('');
+
+  const handleSend = async () => {
+    await writeMessage(props.sender, props.receiver, mes);
+    setMes('');
+    props.reload();
+  }
+
   return (
     <div className="TradeOffer">
       <div className="top">
@@ -36,6 +50,21 @@ export default function TradeOffer() {
           <span>Accept</span>
         </div>
       </div>
+      <Card>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item xs={10} >
+            <TextField variant="outlined" fullWidth size="small" onChange={(e) => setMes(e.target.value)} value={mes}/>
+          </Grid>
+          <Grid item xs={2}>
+            <Button onClick={handleSend}>Send</Button>
+          </Grid>
+        </Grid>
+      </Card>
     </div>
   );
 }
